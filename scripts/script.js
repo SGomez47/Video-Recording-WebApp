@@ -30,7 +30,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function toggleRecording(){
         if (isRecording) {
             recordButton.innerHTML = "Start Recording";
-            recordButton.style.backgroundColor = "#007BFF"; // Green background
+            recordButton.addEventListener('mousedown', function() {
+                recordButton.style.background = 'linear-gradient(90deg, rgba(116,3,3,1) 0%, rgba(215,50,50,1) 69%)';
+            });
+            recordButton.addEventListener('mouseup', function() {
+                recordButton.style.background = '#FF0000'; 
+            });            
             console.log("Recording stopped");
             
             recorder.stopRecording(function() {
@@ -40,7 +45,12 @@ document.addEventListener('DOMContentLoaded', function() {
             
         } else {
             recordButton.innerHTML = "Stop Recording";
-            recordButton.style.backgroundColor = "#FF0000"; // Red background
+            recordButton.addEventListener('mousedown', function() {
+                recordButton.style.background = '#007BFF';
+            });
+            recordButton.addEventListener('mouseup', function() {
+                recordButton.style.background = 'linear-gradient(rgba(41,66,115,1) 5%, rgba(24,40,72,1) 100%)'; 
+            });
             console.log("Recording started");
 
             recorder = RecordRTC(stream, {
@@ -96,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function startScreenshare(){
         if(isScreensharing){
             screenshareButton.innerHTML = "Start Screenshare";
-            screenshareButton.style.backgroundColor = "#007BFF"; // Blue background
+            screenshareButton.style.backgroundColor = "#007BFF"; 
             console.log("Screenshare stopped");
             stream.getTracks().forEach(function(track) {
                 track.stop();
@@ -119,5 +129,12 @@ document.addEventListener('DOMContentLoaded', function() {
     screenshareButton.addEventListener('click', startScreenshare);
     startVideoStream();
     populateDropdown();
+
+    recordButton.addEventListener('mousedown', function() {
+        recordButton.style.background = 'linear-gradient(90deg, rgba(116,3,3,1) 0%, rgba(215,50,50,1) 69%)';
+    });
+    recordButton.addEventListener('mouseup', function() {
+        recordButton.style.background = '#FF0000'; // Red background
+    });     
 
 });
