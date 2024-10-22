@@ -28,5 +28,6 @@ Click the Download button to save the recording as a .webm file.
 5. Switch Inputs:
 Use the input menu to switch between audio and camera sources
 
+
 Recommended
 Use VSCode Live Server Extension or LocalHost
