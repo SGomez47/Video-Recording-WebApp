@@ -1,0 +1,200 @@
+<!--CSS code for UI/UX design-->
+<style>
+    html {
+        height: 100%;
+        margin: auto;
+        width:  100%;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        box-sizing: border-box;
+    }
+    .header {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+    }
+    .topnav {
+        background-color: #b9b9b9;
+        color: #fff;
+        overflow: hidden;
+        width: 100%;
+        justify-content: center;
+        padding: 10px;
+        display: flex;
+    }
+    .topnav a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+    .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+    }
+    .row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    h1 {
+        margin: 20px 0;
+        color: #fff;
+    }
+    video {
+        border: 1px solid #ccc;
+        margin: 20px 0;
+    }
+    button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007BFF; /* Blue background */
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin: 5px;
+    }
+    .button:hover {
+        background-color: #0056b3; /* Darker blue on hover */
+    }
+    .button-record {
+        background-color: #FF0000; /* Red background for recording */
+    }
+    .button-record:hover {
+        background-color: #cc0000; /* Darker red on hover */
+    }
+    .button-screenshare {
+        background-color: #28a745; /* Green background for screensharing */
+    }
+    .button-screenshare:hover {
+        background-color: #218838; /* Darker green on hover */
+    }
+    .dropbtn {
+        background-color: #f4f4f4;
+        color: rgb(90, 90, 90);
+        font-size: 12px;
+        border: none;
+        cursor: pointer;
+        padding: 0px 20px;
+        border-radius: 4px;
+    }
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        max-height: 200px; /* Set maximum height */
+        overflow-y: auto; /* Enable vertical scrolling */
+        bottom: 100%; /* Position above the button */
+        margin-bottom: 0px; /* Space between button and dropdown */
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        border-radius: 4px;
+    }
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+    .show {display:block;}
+    .footer {
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+    }
+
+</style>
+
+<!DOCTYPE html>
+<html>
+    <body>
+        <head>
+            <title>Video Recorder (WebRTC)</title>
+        </head>
+
+        <header class="header">
+            <h1>SGomez - Video Recorder (WebRTC)</h1>
+        </header>
+
+        <div class="topnav">
+            <a href="https://www.linkedin.com/in/salvador-gomez-sanchez-aa14b4236/" target="_blank">LinkedIn</a>
+            <a href="https://github.com/SGomez47?tab=repositories" target="_blank">GitHub</a> 
+        </div>
+
+        <div class="row">
+            <div>
+                <video id="video" width="640" height="480" autoplay></video>
+            </div>  
+            <div>   
+                <button id="start">Start Recording</button>
+                <button id="screenshare">Screen Share</button>
+                <button id="download">Download</button>
+                <div class="dropdown">
+                    <ul class="dropbtn icons btn-right showLeft" onmouseover="toggleDropdown()" onclick="toggleDropdown()">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <div id="dotDropdown" class="dropdown-content">
+                        <strong>Camera</strong>
+                        <div id="cameraList"></div>
+                        <br>
+                        <strong>Microphone</strong>
+                        <div id="micList"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>README</p>
+        </div>
+        <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
+        <script src="scripts/script.js"></script>
+        <script>
+            function toggleDropdown() {
+                document.getElementById("dotDropdown").classList.toggle("show");
+            }
+    
+            // Close the dropdown if the user clicks outside of it
+            window.onclick = function(event) {
+                if (!event.target.matches('.dropbtn')) {
+                    var dropdowns = document.getElementsByClassName("dropdown-content");
+                    for (var i = 0; i < dropdowns.length; i++) {
+                        var openDropdown = dropdowns[i];
+                        if (openDropdown.classList.contains('show')) {
+                            openDropdown.classList.remove('show');
+                        }
+                    }
+                }
+            }
+        </script>
+    </body>
+</html>
